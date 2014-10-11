@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
 
+  resources :rankings
+
+  resources :events
+
   resources :users do
     member do
       get :following, :followers

@@ -11,13 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141005102846) do
+ActiveRecord::Schema.define(:version => 20141011023805) do
 
   create_table "answers", :force => true do |t|
     t.string   "response"
     t.string   "from"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "creator"
+    t.string   "category"
+    t.integer  "size"
+    t.datetime "date"
+    t.datetime "rsvp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "lat",        :precision => 9, :scale => 6
+    t.decimal  "lon",        :precision => 9, :scale => 6
+    t.text     "tags",                                     :default => "'--- []\n'"
+    t.integer  "radius"
   end
 
   create_table "microposts", :force => true do |t|
@@ -39,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20141005102846) do
   end
 
   add_index "questions", ["prompt"], :name => "index_questions_on_prompt", :unique => true
+
+  create_table "rankings", :force => true do |t|
+    t.integer  "assigner"
+    t.integer  "ranking"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "recieve_texts", :force => true do |t|
     t.datetime "created_at"
@@ -64,6 +86,10 @@ ActiveRecord::Schema.define(:version => 20141005102846) do
     t.string   "subject"
     t.integer  "score"
     t.integer  "max_score"
+    t.decimal  "lat",          :precision => 9, :scale => 6
+    t.decimal  "lon",          :precision => 9, :scale => 6
+    t.integer  "rank"
+    t.integer  "radius"
   end
 
 end
