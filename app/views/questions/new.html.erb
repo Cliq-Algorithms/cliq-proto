@@ -1,0 +1,9 @@
+	<%= form_for (@question) do |f| %>
+		<%= f.select :subject, options_for_select(["History","SAT Prep", "Math"]) %>
+	<br />	
+		<%= f.text_field :prompt, :placeholder => 'Question' %>
+	<br />
+		<%= f.text_field :answer, :placeholder => 'Answer' %>
+	<br />
+		<%= f.submit "Submit", :disable_with => 'Submitting...' %>
+	<% end %>

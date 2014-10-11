@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100831012055) do
+ActiveRecord::Schema.define(:version => 20141005102846) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "response"
+    t.string   "from"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -21,6 +28,22 @@ ActiveRecord::Schema.define(:version => 20100831012055) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "questions", :force => true do |t|
+    t.string   "prompt"
+    t.string   "answer"
+    t.boolean  "used"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subject"
+  end
+
+  add_index "questions", ["prompt"], :name => "index_questions_on_prompt", :unique => true
+
+  create_table "recieve_texts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -35,14 +58,12 @@ ActiveRecord::Schema.define(:version => 20100831012055) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.boolean  "admin",              :default => false
+    t.string   "phone_number"
+    t.string   "subject"
+    t.integer  "score"
+    t.integer  "max_score"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

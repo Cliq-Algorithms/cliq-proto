@@ -8,16 +8,16 @@ SampleApp::Application.routes.draw do
   
   resources :sessions,      :only => [:new, :create, :destroy]
   resources :microposts,    :only => [:create, :destroy]
-  resources :relationships, :only => [:create, :destroy]
+  resources :questions
   
-  root :to => "pages#home"
+  root :to => "users#new"
 
-  match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
-  match '/help',    :to => 'pages#help'
-  match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+  match '/leaders',   :to => 'users#leaders'
+
+  #match '/questions', :to => 'questions#new'
+
+  match '/sms',   :to => 'answers#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
