@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141011023805) do
+ActiveRecord::Schema.define(:version => 20141011211317) do
 
   create_table "answers", :force => true do |t|
     t.string   "response"
     t.string   "from"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20141011023805) do
     t.decimal  "lon",        :precision => 9, :scale => 6
     t.text     "tags",                                     :default => "'--- []\n'"
     t.integer  "radius"
+    t.integer  "owner"
   end
 
   create_table "microposts", :force => true do |t|

@@ -21,14 +21,30 @@ class User < ActiveRecord::Base
   validates :phone_number, :presence   => true,
                   :length   => { :in => 8..50}
   validates :subject, :presence => true;
-  
+
+  has_many :attendances, :dependent => :destroy
+  has_many :events, :through => :attendances
+  has_many :event_as_owner, :class_name => "Event"
+
   after_initialize :init
-  
+
   def init
     number = self.phone_number
     self.phone_number ||= ""
     self.phone_number = (self.phone_number+"a").gsub(/\D/, '')
     self.score ||= 0
     self.max_score ||= 0
+  end
+
+  def attendee?(event)
+    attendances.find_by_event_id(event)
+  end
+
+  def join!(event)
+      attendances.create!(:event_id => event.id)
+  end
+
+  def leave!(event)
+    attendances.find_by_event_id(event).destroy
   end
 end

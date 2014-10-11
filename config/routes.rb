@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
 
+  resources :attendances
+
+  resources :attendaces
+
   resources :rankings
 
   resources :events
