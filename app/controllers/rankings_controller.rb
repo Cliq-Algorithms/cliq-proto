@@ -8,6 +8,17 @@ class RankingsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @rankings }
     end
+
+     @rankingslist = @current_user.rankings
+     @sum = @rankinglist.sum(rankings)
+     @count = @rankingslist.count
+     @current_user.rank=@sum/@count
+
+
+
+
+
+
   end
 
   # GET /rankings/1
