@@ -2,12 +2,39 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
+    @attendance = Attendances.all
+    @mainTags = Array["sports", "video games", "movies", "food", "music"]
+    @mainTagsCount = Array[0,0,0,0,0]
+    @attendedEvents = @current_user.attendence
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @events }
+    for @i in 0..@attendedEvents.size-1
+    if(@attenededEvents.tags.first eql? "sports")
+      @mainTagsCount[0] = @mainTagsCount[0]+1
+    elsif(@attenededEvents.tags.first eql? "video games")
+      @mainTagsCount[1] = @mainTagsCount[1]+1
+    elsif(@attenededEvents.tags.first eql? "movies")
+      @mainTagsCount[2] = @mainTagsCount[2]+1
+    elsif(@attenededEvents.tags.first eql? "food")
+      @mainTagsCount[3] = @mainTagsCount[3]+1
+    else
+      @mainTagsCount[4] = @mainTagsCount[4]+1
     end
+    @max = @mainTagsCount.max_by(&:field);
+    @indexOfMax=@mainTagsCount.index(max);
+    @mainTagsCount[@indexOfMax]=0;
+    @max2;
+    @indexOfMax2;
+
+    for @i in 0..@mainTagsCount.size-1
+      if(@mainTagsCount[@i]>=@max2)
+        @max2 = @mainTagsCount[@i]
+        end
+        @indexOfMax2 = @mainTagsCount.index(@max2)
+
+    
+
+
+
   end
 
   # GET /events/1
