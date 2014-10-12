@@ -2,12 +2,23 @@ class RankingsController < ApplicationController
   # GET /rankings
   # GET /rankings.xml
   def index
-    @rankings = Ranking.all
 
+    @rankings = Ranking.alla
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @rankings }
     end
+
+     @rankingslist = @current_user.rankings
+     @sum = @rankinglist.sum(rankings)
+     @count = @rankingslist.count
+     @current_user.rank=@sum/@count
+
+
+
+
+
+
   end
 
   # GET /rankings/1

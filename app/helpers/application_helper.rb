@@ -31,4 +31,10 @@ module ApplicationHelper
   def logo
     image_tag("logo.png", :alt => "Sample App", :class => "round")
   end
+
+  def event_search?
+    @events = Event.all
+    @user = User.find(params[:id])
+    @local_events = @events.where(:lat => (()) )
+  end
 end
