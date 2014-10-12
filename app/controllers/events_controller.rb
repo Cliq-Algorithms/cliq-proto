@@ -31,7 +31,7 @@ class EventsController < ApplicationController
         end
         @indexOfMax2 = @mainTagsCount.index(@max2)
 
-    
+
 
 
 
