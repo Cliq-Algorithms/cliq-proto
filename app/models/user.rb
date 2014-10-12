@@ -18,9 +18,6 @@ class User < ActiveRecord::Base
 
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
-  validates :phone_number, :presence   => true,
-                  :length   => { :in => 8..50}
-  validates :subject, :presence => true;
 
   has_many :attendances, :dependent => :destroy
   has_many :events, :through => :attendances
@@ -36,7 +33,7 @@ class User < ActiveRecord::Base
     self.max_score ||= 0
   end
 
-  def attendee?(event)
+  def self.attendee?(event)
     attendances.find_by_event_id(event)
   end
 
@@ -44,7 +41,7 @@ class User < ActiveRecord::Base
       attendances.create!(:event_id => event.id)
   end
 
-  def leave!(event)
+  def self.leave!(event)
     attendances.find_by_event_id(event).destroy
   end
 end

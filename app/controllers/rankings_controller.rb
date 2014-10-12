@@ -2,8 +2,8 @@ class RankingsController < ApplicationController
   # GET /rankings
   # GET /rankings.xml
   def index
-    @rankings = Ranking.all
 
+    @rankings = Ranking.alla
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @rankings }
