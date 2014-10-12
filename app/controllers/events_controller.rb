@@ -30,11 +30,22 @@ class EventsController < ApplicationController
         @max2 = @mainTagsCount[@i]
         end
         @indexOfMax2 = @mainTagsCount.index(@max2)
+      end
 
+    @firstChoice = @mainTags[@inedexOfMax]
+    @secondChoice = @mainTags[@indexOfMax2]
+    @event = tag_search?(@firstChoice)
 
+    respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @event }
+      end
 
-
-
+    @event2  = tag_search?(@secondChoice)  
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @event2 }
+    end
   end
 
   # GET /events/1
