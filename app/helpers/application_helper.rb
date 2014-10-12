@@ -14,11 +14,10 @@ module ApplicationHelper
 
   def event_search?
       @events = Event.all
-      @withinRadius = @current_user.radius > (((@current_user.lat - @event.lat)**2 +(@current_user.lon - @event.lon)**2)**.5)
+      @withinRadius = (@current_user.radius/68.71) > (((@current_user.lat - @event.lat)**2 +(@current_user.lon - @event.lon)**2)**0.5)
       @local_event = @event.where(withinRadius => true)
-    end
   end
-      
+
   def title
     base_title = "Ruby on Rails Tutorial Sample App"
     if @title.nil?
