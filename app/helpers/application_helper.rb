@@ -1,8 +1,8 @@
 module ApplicationHelper
 
   # Return a title on a per-page basis.
-  def tag_search?
-    @tag = "sports"
+  def tag_search?(tag)
+    @tag = tag
     @eventsCloseBy = events.search
     @eventsWithTag = Array[]
     eventsCloseBy.each do |eventsCloseBy|
